@@ -1,5 +1,6 @@
 package com.rahul.weatherApi.controller;
 
+import com.rahul.weatherApi.dto.Root;
 import com.rahul.weatherApi.dto.WeatherResponse;
 import com.rahul.weatherApi.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,10 @@ public class Controller {
     @GetMapping("/{city}")
     public String getWeatherData(@PathVariable String city){
         return service.test();
+    }
+
+    @GetMapping("/my/{city}")
+    public Root getWeather(@PathVariable String city){
+        return service.getData(city);
     }
 }
