@@ -15,12 +15,9 @@ public class WeatherService {
 
     private RestTemplate template = new RestTemplate();
 
-    public String test(){
-        return "working";
-    }
 
 public Root getData(String city){
-        String url = apiUrl+"?"+apiKey+"&q="+city+"&aqi=yes";
+        String url = apiUrl+"key="+apiKey+"&q="+city+"&aqi=yes";
         Root response = template.getForObject(url, Root.class);
         return response;
 }

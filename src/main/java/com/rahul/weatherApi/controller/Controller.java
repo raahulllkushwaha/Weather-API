@@ -15,13 +15,21 @@ public class Controller {
     @Autowired
     private WeatherService service;
 
-    @GetMapping("/{city}")
-    public String getWeatherData(@PathVariable String city){
-        return service.test();
-    }
 
     @GetMapping("/my/{city}")
     public Root getWeather(@PathVariable String city){
         return service.getData(city);
+    }
+
+    @GetMapping("simple/{city}")
+    public WeatherResponse getSimpleWeather(@PathVariable String city){
+        Root data = service.getData(city);
+
+        WeatherResponse response = new WeatherResponse(
+                data.getLocation().getName(),
+                data.getCurrent().getCondition().getText(),
+                data.getCurrent().getTemp_c()
+        );
+        return response;
     }
 }
